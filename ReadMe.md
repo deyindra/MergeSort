@@ -4,7 +4,7 @@ Normally Merge sort is Sequential and single threaded which takes O(nlogn) time 
 
 Class Diagram
 ============================
-![class diagram](sort.gif)
+![class diagram](sort.jpg)
 
 Prerequisite
 ============================
