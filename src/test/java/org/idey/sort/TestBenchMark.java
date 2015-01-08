@@ -15,19 +15,20 @@ import java.util.Random;
 @AxisRange(min = 0, max = 1)
 @BenchmarkMethodChart(filePrefix = "benchmark-lists")
 public class TestBenchMark extends AbstractBenchmark{
-    private List<Integer> list = new ArrayList<Integer>();
+    private List<Integer> list;
     private Random rand = new Random();
     @Before
     public void setup(){
         System.out.println("Setup started...");
+        list = new ArrayList<Integer>();
         for(int i=0;i<3000000;i++){
-            int random = rand.nextInt((3000000 - i) + 1) + i;
+            int random = rand.nextInt((30000000 - i) + 1) + i;
             list.add(random);
         }
         System.out.println("Setup FINISHED...");
     }
 
-    @BenchmarkOptions(benchmarkRounds = 10, warmupRounds = 1, callgc = true)
+    @BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 4, callgc = true)
     @Test
     public void testSerialSort(){
         System.out.println("SERIAL TEST STARTED...");
@@ -37,7 +38,7 @@ public class TestBenchMark extends AbstractBenchmark{
     }
 
 
-    @BenchmarkOptions(benchmarkRounds = 10, warmupRounds =1, callgc = true)
+    @BenchmarkOptions(benchmarkRounds = 20, warmupRounds =4, callgc = true)
     @Test
     public void testParallelSort(){
         System.out.println("PARALLEL TEST STARTED...");
@@ -49,6 +50,7 @@ public class TestBenchMark extends AbstractBenchmark{
     @After
     public void cleanup(){
         list.clear();
+        list=null;
     }
 }
 
