@@ -21,5 +21,6 @@ Build
 
 Benchmarking
 ============================
-Please run the TestBenchMark to get the bench mark results between Parallel and Serial Merge sort. This is automatically run when somebody will be executing mvn clean install. Please open benchmark-lists.html in order to compare the results.
+Please run the TestBenchMark to get the bench mark results between Parallel and Serial Merge sort. This is automatically run when somebody will be executing mvn clean install. Please open benchmark-lists.html in order to compare the results. This will sort 3 million random integers. Bench mark test will run 20 rounds for each sorting.
+
 
