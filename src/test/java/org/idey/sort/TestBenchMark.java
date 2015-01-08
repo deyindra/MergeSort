@@ -4,6 +4,7 @@ import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
 import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
 import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
 import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,14 +20,14 @@ public class TestBenchMark extends AbstractBenchmark{
     @Before
     public void setup(){
         System.out.println("Setup started...");
-        for(int i=0;i<300000;i++){
-            int random = rand.nextInt((300000 - i) + 1) + i;
+        for(int i=0;i<3000000;i++){
+            int random = rand.nextInt((3000000 - i) + 1) + i;
             list.add(random);
         }
         System.out.println("Setup FINISHED...");
     }
 
-    @BenchmarkOptions(benchmarkRounds = 8, warmupRounds = 2)
+    @BenchmarkOptions(benchmarkRounds = 10, warmupRounds = 1, callgc = true)
     @Test
     public void testSerialSort(){
         System.out.println("SERIAL TEST STARTED...");
@@ -36,13 +37,18 @@ public class TestBenchMark extends AbstractBenchmark{
     }
 
 
-    @BenchmarkOptions(benchmarkRounds = 8, warmupRounds = 2)
+    @BenchmarkOptions(benchmarkRounds = 10, warmupRounds =1, callgc = true)
     @Test
     public void testParallelSort(){
         System.out.println("PARALLEL TEST STARTED...");
         AbstractSort<Integer> sort = new ParallelMergeSort<Integer>(list,60000);
         sort.sort();
         System.out.println("PARALLEL TEST FINISHED...");
+    }
+
+    @After
+    public void cleanup(){
+        list.clear();
     }
 }
 

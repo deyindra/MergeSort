@@ -46,7 +46,7 @@
                 <configuration>
                     <forkCount>3</forkCount>
                     <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1g -Xms1g -XX:MaxPermSize=8192m</argLine>
+                    <argLine>-Xmx8g -Xms8g -XX:MaxPermSize=10240m</argLine>
                     <argLine>-Djub.consumers=CONSOLE,H2 -Djub.db.file=.benchmarks</argLine>
                 </configuration>
             </plugin>
